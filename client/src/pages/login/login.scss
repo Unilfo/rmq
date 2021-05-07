@@ -1,0 +1,20 @@
+.login {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  &__form {
+    border: 1px solid steelblue;
+    height: 200px;
+    width: 300px;
+    padding: 30px;
+  }
+
+  &__button {
+    margin-top: 20px;
+    height: 32px;
+  }
+}

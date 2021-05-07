@@ -1,0 +1,56 @@
+.app {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  width: 1200px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid rgb(104, 107, 106);
+  margin-bottom: 10px;
+}
+
+.links {
+  display: flex;
+  flex-flow: row nowrap;
+
+  &__item {
+    height: 50px;
+    width: 120px;
+    background-color: var(--white-col);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    &:hover {
+      background-color: #c6e2fc;
+      transition-duration: 0.2s;
+    }
+    &:hover a {
+      color: var(--red-col);
+    }
+  }
+}
+.logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+
+  &__item {
+    cursor: pointer;
+
+    &:hover {
+      transition-duration: 0.2s;
+      color: var(--red-col);
+    }
+  }
+}
+
+.active {
+  background-color: #c6e2fc;
+  color: var(--red-col);
+}
