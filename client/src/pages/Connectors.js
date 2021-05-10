@@ -1,26 +1,47 @@
 import React from 'react';
+import { Button } from 'antd'
 
 const Connectors = () => {
-    var v8 = window.ActiveXObject;
-    console.log(v8);
-    // let path = 'd:\\';
-    // let db = 'baza';
-    // let user = 'admin';
-    // let password = '141004';
-    // let conn = v8.Connect("File='" + path + "';Ref='" + db + "';Usr='" + user + "';Pwd='" + password + "';");
-    // let tab = conn.Справочники.Клиенты;
-    // let query = conn.NewObject("Запрос");
-    // query.text = 'ВЫБРАТЬ ПРЕДСТАВЛЕНИЕ(Клиенты.Статус) КАК КлиентыПоСтатусу, КОЛИЧЕСТВО(Клиенты.Ссылка) КАК Количество ИЗ Справочник.Клиенты КАК Клиенты СГРУППИРОВАТЬ ПО Клиенты.Статус';
-    // let Qresult = query.execute().Choose();
-    // let strdat = '';
-    // let n = 1;
-    // while (Qresult.next()) {
-    //     strdat += n + "). " + Qresult.КлиентыПоСтатусу + "<br>"; n++;
-    // }
-    // document.getElementById("message").innerHTML = strdat;
+
+    const handleClick = async () => {
+
+        var requestOptions = {
+            method: 'GET',
+        };
+
+        fetch("http://localhost/ttt/hs/test/get", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log('result', result))
+            .catch(error => console.log('error', error));
+
+    }
+
+    const handleClickPost = async () => {
+        let user = {
+            name: 'John',
+            surname: 'Smith'
+        };
+
+        var myHeaders = new Headers();
+        myHeaders.append('Content-type', 'application/JSON;  charset=utf-8')
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify(user)
+        };
+
+        fetch("http://localhost/ttt/hs/test/post", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log('result', result))
+            .catch(error => console.log('error', error));
+    }
+
     return (
         <div>
             <div>Connectors page</div>
+            <Button type="primary" onClick={() => handleClick()}>Connect to 1c get</Button>
+            <Button type="primary" onClick={() => handleClickPost()}>Connect to 1c post</Button>
         </div>
     )
 };
