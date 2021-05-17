@@ -5,8 +5,8 @@ import { io } from "socket.io-client";
 
 const tailLayout = {
   wrapperCol: {
-    offset: 8,
-    span: 8,
+    offset: 0,
+    span: 1,
   },
 };
 
@@ -22,10 +22,10 @@ const Settings = () => {
     });
     console.log('start listen io');
     socket.emit("get");
-  }, []);
+  },[]);
 
   useEffect(() => {
-    console.log('list', list);
+    console.log('socket', socket);
   }, [list])
 
   const onFinish = (values) => {

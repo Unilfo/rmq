@@ -18,13 +18,13 @@ io.on("connection", socket => {
         rabbitMQHandler((connection) => {
             connection.createChannel((err, channel) => {
                 if (err) {
-                    throw new Error(err)
+                    throw new Error(err);
                 }
 
                 var ex = 'test'
                 var msg = JSON.stringify(data);
                 console.log('msg', msg);
-                var mainQueue = 'task_queue';
+                var mainQueue = 'task_queue'
 
                 channel.assertExchange(ex, 'fanout', {
                     durable: false
@@ -71,6 +71,7 @@ io.on("connection", socket => {
                         }
                     });
                 }, { noAck: false })
+                
             })
         })
     })

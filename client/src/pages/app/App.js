@@ -17,6 +17,7 @@ import Settings from '../Settings';
 import Ocheredi from '../Ocheredi';
 import Connectors from '../Connectors';
 import NoMatch from '../NoMatch';
+import { ExportOutlined } from '@ant-design/icons';
 
 function App() {
 
@@ -31,7 +32,9 @@ function App() {
               <LinkCustom data={links} className="links__item"></LinkCustom>
             </div>
             <div className="logout">
-              <div className="logout logout__item" onClick={() => appSetLogOut()}>Выйти</div>
+              <div className="logout logout__item" onClick={() => appSetLogOut()}>
+                <ExportOutlined style={{ fontSize: '32px'}} />
+              </div>
             </div>
           </header>
         }

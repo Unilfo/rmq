@@ -1,19 +1,27 @@
 import React from 'react';
-import { Button } from 'antd'
+import { Button, Row, Col } from 'antd'
 
 const Connectors = () => {
 
     const handleClick = async () => {
 
+        const token = Buffer.from(`rmq:rmq`, "utf8").toString(
+            "base64"
+        );
+
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Basic ${token}`);
+        
         var requestOptions = {
-            method: 'GET',
+          method: 'GET',
+          headers: myHeaders,
+          redirect: 'follow'
         };
-
-        fetch("http://localhost/ttt/hs/test/get", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log('result', result))
-            .catch(error => console.log('error', error));
-
+        
+        fetch("http://192.168.52.133/serv/hs/oneserv/getnom", requestOptions)
+          .then(response => response.text())
+          .then(result => console.log('result',result))
+          .catch(error => console.log('error', error));
     }
 
     const handleClickPost = async () => {
@@ -31,17 +39,29 @@ const Connectors = () => {
             body: JSON.stringify(user)
         };
 
-        fetch("http://localhost/ttt/hs/test/post", requestOptions)
+        fetch("http://192.168.3.135/Tech/hs/api/msg", requestOptions)
             .then(response => response.text())
             .then(result => console.log('result', result))
             .catch(error => console.log('error', error));
     }
 
+    const style = { background: '#0092ff', padding: '8px 0' }
+
     return (
         <div>
-            <div>Connectors page</div>
-            <Button type="primary" onClick={() => handleClick()}>Connect to 1c get</Button>
-            <Button type="primary" onClick={() => handleClickPost()}>Connect to 1c post</Button>
+        <Row gutter={16}>
+            <Col className="gutter-row" span={6}>
+                <div>Connectors page</div>
+            </Col>
+        </Row>
+        <Row gutter={16}>
+            <Col>
+                <Button type="primary" onClick={() => handleClick()}>Connect to 1c get</Button>
+            </Col>
+            <Col>
+                <Button type="primary" onClick={() => handleClickPost()}>Connect to 1c post</Button>
+            </Col>
+        </Row>
         </div>
     )
 };

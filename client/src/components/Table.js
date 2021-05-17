@@ -118,9 +118,10 @@ export default class EditableTable extends React.Component {
       {
         title: 'Action',
         dataIndex: 'action',
+        width: '10%',
         render: (_, record) =>
           this.state.dataSource.length >= 1 ? (
-            <div>
+            <div className="ant-table-row column">
               <Popconfirm className="column column__action" title="Sure to save?" onConfirm={() => this.handleSave(record)}>
                 <a>Save</a>
               </Popconfirm>

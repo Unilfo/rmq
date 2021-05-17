@@ -1,5 +1,17 @@
 .column {
+  margin-top: 10px!important;
   &__action {
     padding-right: 20px;
   }
+}
+
+.ant-table-cell:last-child{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-table-row{
+  padding: 5px!important;
 }
