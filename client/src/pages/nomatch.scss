@@ -1,0 +1,15 @@
+.no_match_page{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  &_404{
+    font-size: 250px;
+    color: rgb(47, 47, 47);
+  }
+  &_text{
+    font-size: 150px;
+    color: rgb(47, 47, 47);
+  }
+}

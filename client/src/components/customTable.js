@@ -2,16 +2,9 @@ import {Button, Modal} from "antd"
 import React, { useEffect, useState } from "react";
 import { Row, Col, Input } from 'antd';
 import "./tb.scss";
-import {
-    Form,
-    Radio,
-    Select,
-    Cascader,
-    DatePicker,
-    InputNumber,
-    TreeSelect,
-    Switch,
-} from 'antd';
+import { Form, Select } from 'antd';
+import {DeleteOutlined, EditOutlined} from '@ant-design/icons'
+import FormEdit from "../pages/EditForm";
 
 const CustomTable = (props) => {
     const [users, setUsers] = useState( () => props.users )
@@ -19,6 +12,7 @@ const CustomTable = (props) => {
     const [search, setSearch] = useState('')
     const [currentUser, setCurrentUser] = useState(null)
     const [show, setShow] = useState(false)
+
     useEffect(() => {
         setFUsers(() => users)
     },[users])
@@ -27,7 +21,7 @@ const CustomTable = (props) => {
         if(show) {
             Modal.confirm({
                 title: 'Добовление/редактирование пользователя',
-                content: <FormEdit currentUser/>,
+                content: <FormEdit user = {currentUser}/>,
                 okText: 'save',
                 cancelText: 'close',
                 icon: ''
@@ -51,25 +45,6 @@ const CustomTable = (props) => {
         }
     },[search])
 
-    const FormEdit = (user) => {
-        return(
-            <Form>
-                <Form.Item label="Input">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Password">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Select">
-                    <Select>
-                        <Select.Option value="admin">admin</Select.Option>
-                        <Select.Option value="user">user</Select.Option>
-                    </Select>
-                </Form.Item>
-            </Form>
-        )
-    }
-
     const deleteUser = (id) => {
         let isDel = window.confirm('Вы уверены?')
         if(isDel){
@@ -77,7 +52,7 @@ const CustomTable = (props) => {
         }
     }
 
-    const RowClick = (user) => {
+    const RowClick = (e, user) => {
         setCurrentUser(user)
         setShow(true)
     }
@@ -88,7 +63,7 @@ const CustomTable = (props) => {
              <Input.Group size="large">
                 <Row gutter={24}>
                     <Col span={16}>
-                    <Button type="primary" size={"large"} className={'btn_table'}>
+                    <Button type="primary" size={"large"} className={'btn_table'} onClick={(e) => RowClick(e)}>
                         Добавить
                     </Button>
                     </Col>
@@ -120,22 +95,25 @@ const CustomTable = (props) => {
 
             <tbody>
                 {filteredUsers && filteredUsers.map((el)=>(
-                        <tr className={'row'} key={el.id} onClick={() => RowClick(el)}>
+                        <tr className={'row'} key={el.id}>
                             <td  className={'cell'}>
                                 {el.id}
                             </td>
                             <td  className={'cell'}>
                                 {el.name}
                             </td>
-                            <td  className={'cell'}>
+                            <td  className={'cell'} id={'hidetext'}>
                                 {el.password}
                             </td>
                             <td  className={'cell'}>
                                 {el.role}
                             </td>
                             <td  className={'cell'}>
-                                <Button type="primary" size={"large"} onClick={(e)=> deleteUser(el.id)}>
-                                    удалить
+                                <Button type="primary" size={"large"} className={'tbl_btn'} onClick={()=> deleteUser(el.id)}>
+                                    <DeleteOutlined />
+                                </Button>
+                                <Button type="primary" size={"large"} className={'tbl_btn'} onClick={(e) => RowClick(e,el)}>
+                                    <EditOutlined />
                                 </Button>
                             </td>
                         </tr>

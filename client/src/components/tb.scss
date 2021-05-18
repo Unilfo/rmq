@@ -24,6 +24,10 @@ thead{
     flex: 1;
 }
 
+.row:nth-child(2n) {
+      background-color: rgba(182, 182, 182, 0.16);
+}
+
 .cell:nth-child(2) {
     flex: 2;
 }
@@ -40,10 +44,10 @@ thead{
     align-items: center;
 }
 
-
 .row:hover{
-    background-color: rgb(223, 223, 223);
+    background-color: rgba(223, 223, 223, 0.8);
 }
+
 .cell {
     flex: 5;
     border: 1px solid rgb(107, 107, 107);
@@ -54,3 +58,8 @@ thead{
     box-sizing: border-box;
     max-height: 60px;
 }
+
+.tbl_btn{
+    margin: 0 auto;
+}
+#hidetext { -webkit-text-security: disc; /* Default */ }
